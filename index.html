@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Yatoi 🤍</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
 /* ══ RESET ══ */
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -33,7 +32,453 @@ body{
   min-height:100vh;
 }
 
-/* ══ FLOATING MUSIC BUTTON ══ */
+/* ══ FALLING PETALS ══ */
+.petals-canvas{
+  position:fixed;inset:0;
+  pointer-events:none;
+  z-index:0;overflow:hidden;
+}
+.petal{
+  position:absolute;
+  top:-60px;
+  font-size:clamp(10px,2vw,18px);
+  opacity:0;
+  animation:fall linear infinite;
+  will-change:transform,opacity;
+}
+@keyframes fall{
+  0%{transform:translateY(-60px) rotate(0deg) translateX(0);opacity:0;}
+  10%{opacity:0.7;}
+  90%{opacity:0.5;}
+  100%{transform:translateY(105vh) rotate(720deg) translateX(40px);opacity:0;}
+}
+
+/* ══ HERO SECTION ══ */
+#hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:60px 32px;
+  background:linear-gradient(170deg,#FDF0ED 0%,#FAE8E8 40%,#F5D6D8 100%);
+  overflow:hidden;
+  z-index:1;
+}
+/* Large decorative background text */
+.hero-deco{
+  position:absolute;
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(80px,18vw,200px);
+  color:rgba(196,116,122,0.06);
+  pointer-events:none;user-select:none;
+  line-height:1;
+  white-space:nowrap;
+}
+.hero-deco.top{top:-20px;left:-30px;}
+.hero-deco.bottom{bottom:-20px;right:-30px;}
+
+.hero-date{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(9px,2vw,12px);
+  font-weight:500;letter-spacing:5px;
+  text-transform:uppercase;
+  color:var(--rose);
+  margin-bottom:24px;
+  opacity:0;animation:fadeUp 1s ease 0.3s forwards;
+}
+.hero-name{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(72px,18vw,160px);
+  color:var(--wine);
+  line-height:0.9;
+  margin-bottom:12px;
+  opacity:0;animation:fadeUp 1s ease 0.6s forwards;
+  filter:drop-shadow(0 4px 20px rgba(139,58,66,0.15));
+}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,4vw,24px);
+  font-style:italic;
+  color:var(--deep);
+  opacity:0;animation:fadeUp 1s ease 0.9s forwards;
+  line-height:1.5;
+  max-width:480px;
+}
+.hero-heart{
+  font-size:clamp(32px,8vw,52px);
+  margin:28px 0;
+  opacity:0;animation:heartbeat 1s ease 1.2s forwards;
+  display:block;
+}
+@keyframes heartbeat{
+  0%{opacity:0;transform:scale(0);}
+  60%{transform:scale(1.3);}
+  80%{transform:scale(0.95);}
+  100%{opacity:1;transform:scale(1);}
+}
+.scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  opacity:0;animation:fadeUp 1s ease 1.8s forwards;
+}
+.scroll-hint span{
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);
+}
+.scroll-arrow{
+  width:1px;height:36px;
+  background:linear-gradient(180deg,var(--rose),transparent);
+  animation:scrollPulse 1.5s ease infinite;
+}
+@keyframes scrollPulse{
+  0%,100%{opacity:0.3;transform:scaleY(1);}
+  50%{opacity:1;transform:scaleY(1.2);}
+}
+
+/* ══ DIVIDER ══ */
+.divider{
+  display:flex;align-items:center;justify-content:center;
+  gap:16px;padding:0 32px;margin:0 auto;max-width:500px;
+}
+.div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.div-icon{font-size:18px;}
+
+/* ══ SECTIONS ══ */
+section{
+  position:relative;z-index:1;
+  padding:80px 32px;
+  max-width:680px;
+  margin:0 auto;
+}
+
+/* ══ CHAPTER LABEL ══ */
+.chapter{
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;font-weight:500;letter-spacing:5px;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:12px;text-align:center;display:block;
+}
+
+/* ══ SECTION HEADINGS ══ */
+.sec-h{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(48px,12vw,88px);
+  color:var(--wine);
+  text-align:center;
+  line-height:1;margin-bottom:8px;
+}
+.sec-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,3.5vw,22px);
+  font-style:italic;color:var(--deep);
+  text-align:center;line-height:1.6;
+  margin-bottom:40px;
+}
+
+/* ══ TIMELINE ══ */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{
+  display:flex;gap:24px;align-items:flex-start;
+  padding:28px 0;
+  border-bottom:1px solid rgba(196,116,122,0.15);
+  opacity:0;
+  transform:translateX(-20px);
+  transition:all 0.7s ease;
+}
+.tl-item.visible{opacity:1;transform:translateX(0);}
+.tl-left{
+  display:flex;flex-direction:column;align-items:center;
+  flex-shrink:0;width:64px;
+}
+.tl-date{
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--rose);text-align:center;
+  line-height:1.4;
+}
+.tl-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--rose);margin:8px 0;
+  box-shadow:0 0 0 3px rgba(196,116,122,0.2);
+  flex-shrink:0;
+}
+.tl-line{
+  width:1px;flex:1;min-height:20px;
+  background:linear-gradient(180deg,var(--rose),transparent);
+  margin-top:4px;
+}
+.tl-content{}
+.tl-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(16px,3.5vw,20px);
+  font-weight:700;color:var(--wine);
+  margin-bottom:8px;line-height:1.2;
+}
+.tl-body{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(15px,3vw,18px);
+  color:#5A3535;line-height:1.85;
+}
+
+/* ══ LOVE LETTER ══ */
+.letter{
+  background:white;
+  border-radius:4px;
+  padding:40px 36px;
+  box-shadow:
+    0 2px 0 0 var(--gold),
+    0 8px 40px rgba(139,58,66,0.08),
+    4px 4px 0 rgba(196,116,122,0.1);
+  position:relative;
+  overflow:hidden;
+}
+.letter::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--wine),var(--rose),var(--gold),var(--rose),var(--wine));
+}
+.letter-opener{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(28px,7vw,48px);
+  color:var(--wine);margin-bottom:20px;display:block;
+}
+.letter-body{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,3vw,19px);
+  color:#3D1A1A;line-height:2;
+}
+.letter-body p{margin-bottom:20px;}
+.letter-body p:last-child{margin-bottom:0;}
+.letter-signature{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(28px,7vw,44px);
+  color:var(--rose);
+  margin-top:28px;display:block;text-align:right;
+}
+
+/* ══ THE QUESTION ══ */
+#question{
+  background:linear-gradient(160deg,var(--wine) 0%,#3A0F14 100%);
+  color:white;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:80px 32px;
+  position:relative;
+  overflow:hidden;
+  z-index:1;
+}
+#question::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.q-glow{
+  position:absolute;top:-100px;left:50%;
+  transform:translateX(-50%);
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(196,116,122,0.15) 0%,transparent 65%);
+  pointer-events:none;
+}
+.q-chapter{
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;font-weight:500;letter-spacing:5px;
+  text-transform:uppercase;color:var(--gold2);
+  margin-bottom:24px;opacity:0.8;
+}
+.q-name{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(56px,14vw,120px);
+  color:white;line-height:0.9;
+  margin-bottom:20px;
+  text-shadow:0 4px 30px rgba(255,255,255,0.1);
+}
+.q-text{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(20px,5vw,36px);
+  font-style:italic;
+  color:rgba(255,255,255,0.9);
+  line-height:1.5;max-width:520px;
+  margin-bottom:16px;
+}
+.q-highlight{
+  color:var(--gold2);font-weight:700;
+  font-style:normal;
+}
+.q-number{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(20px,4vw,32px);
+  color:rgba(255,255,255,0.4);
+  margin-bottom:48px;display:block;
+}
+
+/* Buttons */
+.btn-yes{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--wine);
+  padding:18px 52px;
+  border:none;border-radius:100px;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,4vw,24px);
+  font-style:italic;font-weight:700;
+  cursor:pointer;
+  box-shadow:0 8px 40px rgba(201,169,110,0.4);
+  transition:all 0.3s;
+  display:flex;align-items:center;gap:10px;
+  margin:0 auto;
+}
+.btn-yes:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 16px 60px rgba(201,169,110,0.5);
+}
+.btn-yes:active{transform:scale(0.97);}
+
+/* ══ YES RESPONSE ══ */
+#response{
+  display:none;
+  background:linear-gradient(160deg,#FDF0ED,#FAE0E0);
+  min-height:100vh;
+  align-items:center;justify-content:center;
+  text-align:center;padding:80px 32px;
+  flex-direction:column;
+  position:relative;z-index:1;
+}
+#response.visible{display:flex;}
+.r-emoji{font-size:64px;margin-bottom:24px;animation:heartbeat 0.5s ease forwards;}
+.r-title{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(56px,14vw,120px);
+  color:var(--wine);line-height:0.9;
+  margin-bottom:20px;
+}
+.r-body{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(17px,3.5vw,22px);
+  font-style:italic;color:var(--deep);
+  line-height:1.8;max-width:480px;margin-bottom:40px;
+}
+
+/* ══ MUSIC SECTION ══ */
+#music{
+  background:var(--cream);
+  padding:80px 32px;
+  text-align:center;
+  position:relative;z-index:1;
+}
+.music-card{
+  background:white;
+  border-radius:24px;
+  padding:40px 32px;
+  max-width:380px;margin:0 auto;
+  box-shadow:0 8px 60px rgba(139,58,66,0.1);
+  border:1px solid rgba(196,116,122,0.15);
+  position:relative;overflow:hidden;
+}
+.music-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--wine),var(--rose),var(--gold),var(--rose),var(--wine));
+}
+.music-icon{font-size:48px;margin-bottom:16px;display:block;}
+.music-title{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;color:var(--wine);
+  margin-bottom:6px;
+}
+.music-artist{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-style:italic;color:var(--muted);
+  margin-bottom:28px;display:block;
+}
+
+/* QR Code area */
+.qr-wrap{
+  background:var(--cream);
+  border-radius:16px;padding:20px;
+  display:inline-block;margin-bottom:16px;
+  border:1px solid rgba(196,116,122,0.2);
+}
+/* Actual QR drawn with SVG dots */
+.qr-inner{
+  width:140px;height:140px;
+  position:relative;
+}
+/* Spotify button */
+.spotify-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#1DB954;color:white;
+  padding:12px 28px;border-radius:100px;
+  font-family:'Montserrat',sans-serif;
+  font-size:13px;font-weight:700;letter-spacing:1px;
+  text-decoration:none;
+  transition:all 0.25s;
+}
+.spotify-btn:hover{background:#1ed760;transform:translateY(-2px);}
+.yt-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#FF0000;color:white;
+  padding:12px 28px;border-radius:100px;
+  font-family:'Montserrat',sans-serif;
+  font-size:13px;font-weight:700;letter-spacing:1px;
+  text-decoration:none;
+  transition:all 0.25s;margin-top:10px;
+}
+.yt-btn:hover{background:#cc0000;transform:translateY(-2px);}
+.music-note{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-style:italic;color:var(--muted);
+  margin-top:16px;line-height:1.5;display:block;
+}
+
+/* ══ FINAL FOOTER ══ */
+footer{
+  background:var(--wine);
+  padding:60px 32px 48px;
+  text-align:center;
+  position:relative;z-index:1;
+}
+.footer-script{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(36px,10vw,72px);
+  color:white;margin-bottom:12px;display:block;
+}
+.footer-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-style:italic;
+  color:rgba(255,255,255,0.5);margin-bottom:24px;
+}
+.footer-hearts{
+  font-size:22px;letter-spacing:8px;opacity:0.6;
+}
+.footer-made{
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);margin-top:32px;display:block;
+}
+
+/* ══ ANIMATIONS ══ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.fade-in{opacity:0;transform:translateY(20px);transition:all 0.8s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* ══ CONFETTI ══ */
+.confetti-piece{
+  position:fixed;pointer-events:none;z-index:9999;
+  font-size:20px;
+  animation:confettiFall 2.5s ease-out forwards;
+}
+@keyframes confettiFall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
+  100%{transform:translateY(90vh) rotate(720deg);opacity:0;}
+}
+
+/* Floating music note */
 .float-note{
   position:fixed;bottom:24px;right:24px;z-index:100;
   width:52px;height:52px;border-radius:50%;
@@ -50,34 +495,333 @@ body{
   50%{transform:translateY(-6px);}
 }
 
-/* (ALL YOUR ORIGINAL STYLES REMAIN EXACTLY THE SAME — unchanged for brevity) */
+/* Responsive */
+@media(max-width:500px){
+  section{padding:60px 24px;}
+  .letter{padding:28px 22px;}
+  #question{padding:60px 24px;}
+}
 </style>
 </head>
-
 <body>
 
-<!-- FLOATING MUSIC BUTTON (FIXED LINK) -->
-<a href="https://open.spotify.com/track/7vlPI45Zzzk0palLdKry4k?si=ieCC9VRJSvaZkDDSMcII0Q" target="_blank" class="float-note" title="Play our song 🎵">🎵</a>
+<!-- FLOATING PETALS -->
+<div class="petals-canvas" id="petals"></div>
 
-<!-- ALL YOUR ORIGINAL HTML CONTENT UNCHANGED ABOVE THIS POINT -->
+<!-- FLOATING MUSIC BUTTON -->
+<a href="https://open.spotify.com/search/If%20It%27s%20Lovin%27%20That%20You%20Want%20Usher" target="_blank" class="float-note" title="Play our song 🎵">🎵</a>
 
-<!-- ══════════ MUSIC QR (FIXED) ══════════ -->
-<div class="qr-wrap">
-  <div class="qr-inner">
-    <img 
-      src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://youtu.be/XNwwZ56xz8A?si=F19b0G0ksmufSs6g"
-      width="140"
-      height="140"
-      alt="QR Code"
-    />
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <div class="hero-deco top">Yatoi</div>
+  <div class="hero-deco bottom">always</div>
+
+  <div class="hero-date">23rd March 2025 — the beginning</div>
+  <div class="hero-name">Yatoi</div>
+  <div class="hero-sub">
+    I didn't know then that I was talking to my future.
   </div>
+  <span class="hero-heart">🌹</span>
+
+  <div class="scroll-hint">
+    <span>Our story</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ══════════ TIMELINE ══════════ -->
+<section>
+  <span class="chapter">Chapter One</span>
+  <h2 class="sec-h">How it began</h2>
+  <p class="sec-sub">Every love story has its dates.<br>These are ours.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-date">Mar<br>23</div>
+        <div class="tl-dot"></div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">Our First Chat ✨</div>
+        <div class="tl-body">
+          I didn't know then that I was talking to my future.
+          Just two strangers with a conversation that wouldn't end.
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-date">Mar<br>25<br><span style="font-size:9px;">9:55am</span></div>
+        <div class="tl-dot"></div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">The First Proposal 💌</div>
+        <div class="tl-body">
+          I was shaking typing it. Every word felt like everything.
+          And then you said yes — and the world got lighter.
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-date">Mar<br>25<br><span style="font-size:9px;">11:26pm</span></div>
+        <div class="tl-dot"></div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">Our First Promise 🌙</div>
+        <div class="tl-body">
+          Same day, same us — already choosing each other.
+          Some people take years to decide. We decided in hours.
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-date">Mar<br>27</div>
+        <div class="tl-dot"></div>
+        <div class="tl-line"></div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">Our First Fight 🌧️</div>
+        <div class="tl-body">
+          I was scared we'd break. But instead — we talked, we listened,
+          and we came out closer. That's when I knew this wasn't
+          just butterflies. This was something real. <em>This was us.</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left">
+        <div class="tl-date">One<br>Month</div>
+        <div class="tl-dot" style="background:var(--gold);box-shadow:0 0 0 3px rgba(201,169,110,0.2);"></div>
+      </div>
+      <div class="tl-content">
+        <div class="tl-title">Here We Are 🌹</div>
+        <div class="tl-body">
+          One month in, and it still feels like day one — but better.
+          You've turned ordinary days into my favourite story.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="div-line"></div>
+  <div class="div-icon">🌸</div>
+  <div class="div-line"></div>
 </div>
 
-<!-- ══════════ SCRIPT ══════════ -->
+<!-- ══════════ LOVE LETTER ══════════ -->
+<section>
+  <span class="chapter">Chapter Two</span>
+  <h2 class="sec-h">What I feel</h2>
+
+  <div class="letter fade-in">
+    <span class="letter-opener">Dear Yatoi,</span>
+    <div class="letter-body">
+      <p>
+        I'm not good with fancy words. I never have been.
+        But I'm good at knowing what I want.
+      </p>
+      <p>
+        And it's you, Yatoi.
+      </p>
+      <p>
+        All of you. Every messy moment, every laughing one,
+        every quiet one, every crazy one.
+        I don't want the highlight reel. I want the whole film.
+      </p>
+      <p>
+        You've turned ordinary into my favourite word.
+        You make Tuesdays feel like something worth celebrating.
+        You make morning texts feel like coming home.
+      </p>
+      <p>
+        So this is my third proposal. Because one wasn't enough.
+        And two wasn't either. Some things deserve to be said
+        over and over until they feel real enough.
+      </p>
+    </div>
+    <span class="letter-signature">— always yours 🌹</span>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="div-line"></div>
+  <div class="div-icon">💌</div>
+  <div class="div-line"></div>
+</div>
+
+<!-- ══════════ THE QUESTION ══════════ -->
+<section id="question">
+  <div class="q-glow"></div>
+
+  <div class="q-chapter">The Third Proposal</div>
+  <div class="q-name">Yatoi</div>
+
+  <p class="q-text">
+    Will you officially be
+    <span class="q-highlight">my girlfriend</span>,
+    today and forever to go?
+  </p>
+  <span class="q-number">— proposal #3, because one was never enough —</span>
+
+  <button class="btn-yes" onclick="sayYes()">
+    🌹 Yes, forever 🌹
+  </button>
+</section>
+
+<!-- ══════════ YES RESPONSE ══════════ -->
+<section id="response">
+  <div class="r-emoji">🥂</div>
+  <div class="r-title">She said yes!</div>
+  <p class="r-body">
+    Again. Because some things deserve to be chosen
+    over and over, every single day.
+    <br><br>
+    This is us, Yatoi. 🌹
+  </p>
+  <!-- Music section embedded here too -->
+  <div style="margin-top:20px;">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--deep);margin-bottom:16px;">
+      Now play our song 🎵
+    </p>
+    <a href="https://open.spotify.com/search/If%20It%27s%20Lovin%27%20That%20You%20Want%20Usher" target="_blank" class="spotify-btn">
+      ♪ Open on Spotify
+    </a>
+  </div>
+</section>
+
+<!-- ══════════ MUSIC ══════════ -->
+<section id="music">
+  <span class="chapter">Our Song</span>
+  <h2 class="sec-h fade-in">Play this</h2>
+  <p class="sec-sub fade-in" style="margin-bottom:32px;">
+    Close your eyes. Press play. Think of us.
+  </p>
+
+  <div class="music-card fade-in">
+    <span class="music-icon">🎵</span>
+    <div class="music-title">If It's Lovin' That You Want</div>
+    <span class="music-artist">Usher</span>
+
+    <!-- QR Code visual — links to Spotify search -->
+    <div class="qr-wrap">
+      <div class="qr-inner">
+        <!-- Clean QR-style pattern pointing to Spotify -->
+        <svg viewBox="0 0 140 140" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background -->
+          <rect width="140" height="140" fill="#FDF8F5"/>
+          <!-- Top-left finder -->
+          <rect x="10" y="10" width="36" height="36" rx="4" fill="#5C1F28"/>
+          <rect x="16" y="16" width="24" height="24" rx="2" fill="#FDF8F5"/>
+          <rect x="20" y="20" width="16" height="16" rx="1" fill="#5C1F28"/>
+          <!-- Top-right finder -->
+          <rect x="94" y="10" width="36" height="36" rx="4" fill="#5C1F28"/>
+          <rect x="100" y="16" width="24" height="24" rx="2" fill="#FDF8F5"/>
+          <rect x="104" y="20" width="16" height="16" rx="1" fill="#5C1F28"/>
+          <!-- Bottom-left finder -->
+          <rect x="10" y="94" width="36" height="36" rx="4" fill="#5C1F28"/>
+          <rect x="16" y="100" width="24" height="24" rx="2" fill="#FDF8F5"/>
+          <rect x="20" y="104" width="16" height="16" rx="1" fill="#5C1F28"/>
+          <!-- Data modules (decorative pattern) -->
+          <rect x="54" y="10" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="62" y="10" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="70" y="10" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="78" y="10" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="54" y="18" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="70" y="18" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="78" y="18" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="54" y="26" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="62" y="26" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="78" y="26" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="54" y="34" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="62" y="34" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="70" y="34" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="78" y="34" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <!-- Middle rows -->
+          <rect x="10" y="54" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="18" y="54" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="34" y="54" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="54" y="54" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="62" y="54" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="70" y="54" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="78" y="54" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="86" y="54" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="94" y="54" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="110" y="54" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="124" y="54" width="6" height="6" rx="1" fill="#C4747A"/>
+          <!-- Centre heart module -->
+          <text x="70" y="76" text-anchor="middle" font-size="18" fill="#C4747A">🌹</text>
+          <!-- Bottom rows -->
+          <rect x="10" y="62" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="26" y="62" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="42" y="62" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="54" y="62" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="78" y="62" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="94" y="62" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="110" y="62" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="124" y="62" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="54" y="94" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="62" y="94" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="78" y="94" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="86" y="94" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="54" y="102" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="70" y="102" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="86" y="102" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="54" y="110" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="62" y="110" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="78" y="110" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="54" y="118" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="70" y="118" width="6" height="6" rx="1" fill="#5C1F28"/>
+          <rect x="78" y="118" width="6" height="6" rx="1" fill="#C4747A"/>
+          <rect x="86" y="118" width="6" height="6" rx="1" fill="#5C1F28"/>
+        </svg>
+      </div>
+    </div>
+
+    <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:1px;color:var(--muted);margin-bottom:16px;">
+      Scan to open · or tap below
+    </p>
+
+    <a href="https://open.spotify.com/track/7vlPI45Zzzk0palLdKry4k?si=ieCC9VRJSvaZkDDSMcII0Q" target="_blank" class="spotify-btn">
+      ♪ Open on Spotify
+    </a>
+    <br>
+    <a href="https://youtu.be/XNwwZ56xz8A?si=F19b0G0ksmufSs6g" target="_blank" class="yt-btn">
+      ▶ Open on YouTube
+    </a>
+
+    <span class="music-note">
+      "If it's lovin' that you want, you got it..."<br>
+      — that's us, Yatoi. 🌹
+    </span>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <span class="footer-script">Forever yours</span>
+  <p class="footer-sub">Today, tomorrow, and every ordinary day in between.</p>
+  <div class="footer-hearts">🌹 💌 🌹</div>
+  <span class="footer-made">Made with love · For Yatoi · Always</span>
+</footer>
+
+<!-- ══ JS ══ -->
 <script>
+/* ── PETALS ── */
 const petalsCanvas = document.getElementById('petals');
 const petalEmojis = ['🌸','🌺','🌹','💮','🏵️','✿','❀'];
-
 function createPetal(){
   const p = document.createElement('div');
   p.className = 'petal';
@@ -86,19 +830,27 @@ function createPetal(){
   p.style.fontSize = (Math.random()*12 + 8) + 'px';
   p.style.animationDuration = (Math.random()*6 + 5) + 's';
   p.style.animationDelay = (Math.random()*8) + 's';
+  p.style.opacity = '0';
   petalsCanvas.appendChild(p);
   setTimeout(()=>{p.remove();},14000);
 }
 setInterval(createPetal, 800);
+for(let i=0;i<8;i++) setTimeout(createPetal, i*400);
 
-/* FIXED YES BUTTON */
+/* ── SCROLL ANIMATIONS ── */
+const fadeEls = document.querySelectorAll('.fade-in, .tl-item');
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+    }
+  });
+},{threshold:0.15});
+fadeEls.forEach(el=>obs.observe(el));
+
+/* ── YES BUTTON ── */
 function sayYes(){
-
-  // WhatsApp redirect (FIXED)
-  const message = encodeURIComponent("Yes 🌹");
-  window.open("https://wa.me/254705833602?text=" + message, "_blank");
-
-  // Confetti
+  // Confetti burst
   for(let i=0;i<40;i++){
     setTimeout(()=>{
       const c = document.createElement('div');
@@ -111,12 +863,12 @@ function sayYes(){
     },i*60);
   }
 
+  // Hide question, show response
   document.getElementById('question').style.display='none';
   const resp = document.getElementById('response');
   resp.classList.add('visible');
   resp.scrollIntoView({behavior:'smooth', block:'center'});
 }
 </script>
-
 </body>
-</html>
+                                                                                       </html>
