@@ -15,12 +15,10 @@ html{scroll-behavior:smooth;}
 }
 body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:var(--dark);overflow-x:hidden;min-height:100vh;}
 
-/* PETALS */
 .petals-canvas{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
 .petal{position:absolute;top:-60px;font-size:clamp(10px,2vw,18px);opacity:0;animation:fall linear infinite;will-change:transform,opacity;}
 @keyframes fall{0%{transform:translateY(-60px) rotate(0deg) translateX(0);opacity:0;}10%{opacity:0.7;}90%{opacity:0.5;}100%{transform:translateY(105vh) rotate(720deg) translateX(40px);opacity:0;}}
 
-/* HERO */
 #hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 32px;background:linear-gradient(170deg,#FDF0ED 0%,#FAE8E8 40%,#F5D6D8 100%);overflow:hidden;z-index:1;}
 .hero-deco{position:absolute;font-family:'Great Vibes',cursive;font-size:clamp(80px,18vw,200px);color:rgba(196,116,122,0.06);pointer-events:none;user-select:none;line-height:1;white-space:nowrap;}
 .hero-deco.top{top:-20px;left:-30px;}.hero-deco.bottom{bottom:-20px;right:-30px;}
@@ -34,18 +32,15 @@ body{background:var(--cream);font-family:'Cormorant Garamond',serif;color:var(--
 .scroll-arrow{width:1px;height:36px;background:linear-gradient(180deg,var(--rose),transparent);animation:scrollPulse 1.5s ease infinite;}
 @keyframes scrollPulse{0%,100%{opacity:0.3;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.2);}}
 
-/* DIVIDER */
 .divider{display:flex;align-items:center;justify-content:center;gap:16px;padding:0 32px;margin:0 auto;max-width:500px;}
 .div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
 .div-icon{font-size:18px;}
 
-/* SECTIONS */
 section{position:relative;z-index:1;padding:80px 32px;max-width:680px;margin:0 auto;}
 .chapter{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;text-align:center;display:block;}
 .sec-h{font-family:'Great Vibes',cursive;font-size:clamp(48px,12vw,88px);color:var(--wine);text-align:center;line-height:1;margin-bottom:8px;}
 .sec-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,3.5vw,22px);font-style:italic;color:var(--deep);text-align:center;line-height:1.6;margin-bottom:40px;}
 
-/* TIMELINE */
 .timeline{display:flex;flex-direction:column;gap:0;}
 .tl-item{display:flex;gap:24px;align-items:flex-start;padding:28px 0;border-bottom:1px solid rgba(196,116,122,0.15);opacity:0;transform:translateX(-20px);transition:all 0.7s ease;}
 .tl-item.visible{opacity:1;transform:translateX(0);}
@@ -56,7 +51,6 @@ section{position:relative;z-index:1;padding:80px 32px;max-width:680px;margin:0 a
 .tl-title{font-family:'Playfair Display',serif;font-size:clamp(16px,3.5vw,20px);font-weight:700;color:var(--wine);margin-bottom:8px;line-height:1.2;}
 .tl-body{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,3vw,18px);color:#5A3535;line-height:1.85;}
 
-/* LOVE LETTER */
 .letter{background:white;border-radius:4px;padding:40px 36px;box-shadow:0 2px 0 0 var(--gold),0 8px 40px rgba(139,58,66,0.08),4px 4px 0 rgba(196,116,122,0.1);position:relative;overflow:hidden;}
 .letter::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--wine),var(--rose),var(--gold),var(--rose),var(--wine));}
 .letter-opener{font-family:'Great Vibes',cursive;font-size:clamp(28px,7vw,48px);color:var(--wine);margin-bottom:20px;display:block;}
@@ -64,9 +58,6 @@ section{position:relative;z-index:1;padding:80px 32px;max-width:680px;margin:0 a
 .letter-body p{margin-bottom:20px;}.letter-body p:last-child{margin-bottom:0;}
 .letter-signature{font-family:'Great Vibes',cursive;font-size:clamp(28px,7vw,44px);color:var(--rose);margin-top:28px;display:block;text-align:right;}
 
-None
-
-/* THE QUESTION */
 #question{background:linear-gradient(160deg,var(--wine) 0%,#3A0F14 100%);color:white;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 32px;position:relative;overflow:hidden;z-index:1;}
 #question::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;}
 .q-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(196,116,122,0.15) 0%,transparent 65%);pointer-events:none;}
@@ -79,7 +70,6 @@ None
 .btn-yes:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 60px rgba(201,169,110,0.5);}
 .btn-yes:active{transform:scale(0.97);}
 
-/* YES RESPONSE */
 #response{display:none;background:linear-gradient(160deg,#FDF0ED,#FAE0E0);min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:80px 32px;flex-direction:column;position:relative;z-index:1;}
 #response.visible{display:flex;}
 .r-emoji{font-size:64px;margin-bottom:24px;animation:heartbeat 0.5s ease forwards;}
@@ -89,7 +79,6 @@ None
 .wa-btn:hover{background:#20b358;transform:translateY(-2px);box-shadow:0 14px 40px rgba(37,211,102,0.5);}
 .wa-icon{font-size:22px;}
 
-/* MUSIC */
 #music{background:var(--cream);padding:80px 32px;text-align:center;position:relative;z-index:1;}
 .music-card{background:white;border-radius:24px;padding:40px 32px;max-width:380px;margin:0 auto;box-shadow:0 8px 60px rgba(139,58,66,0.1);border:1px solid rgba(196,116,122,0.15);position:relative;overflow:hidden;}
 .music-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--wine),var(--rose),var(--gold),var(--rose),var(--wine));}
@@ -104,14 +93,12 @@ None
 .yt-btn:hover{background:#cc0000;transform:translateY(-2px);}
 .music-note{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--muted);margin-top:16px;line-height:1.5;display:block;}
 
-/* FOOTER */
 footer{background:var(--wine);padding:60px 32px 48px;text-align:center;position:relative;z-index:1;}
 .footer-script{font-family:'Great Vibes',cursive;font-size:clamp(36px,10vw,72px);color:white;margin-bottom:12px;display:block;}
 .footer-sub{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:rgba(255,255,255,0.5);margin-bottom:24px;}
 .footer-hearts{font-size:22px;letter-spacing:8px;opacity:0.6;}
 .footer-made{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-top:32px;display:block;}
 
-/* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 .fade-in{opacity:0;transform:translateY(20px);transition:all 0.8s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
@@ -207,8 +194,6 @@ footer{background:var(--wine);padding:60px 32px 48px;text-align:center;position:
 
 <div class="divider"><div class="div-line"></div><div class="div-icon">💌</div><div class="div-line"></div></div>
 
-None
-
 <!-- THE QUESTION -->
 <section id="question">
   <div class="q-glow"></div>
@@ -244,19 +229,15 @@ None
       <div class="qr-inner">
         <svg viewBox="0 0 140 140" width="140" height="140" xmlns="http://www.w3.org/2000/svg">
           <rect width="140" height="140" fill="#FDF8F5"/>
-          <!-- Top-left finder -->
           <rect x="10" y="10" width="36" height="36" rx="4" fill="#5C1F28"/>
           <rect x="16" y="16" width="24" height="24" rx="2" fill="#FDF8F5"/>
           <rect x="20" y="20" width="16" height="16" rx="1" fill="#5C1F28"/>
-          <!-- Top-right finder -->
           <rect x="94" y="10" width="36" height="36" rx="4" fill="#5C1F28"/>
           <rect x="100" y="16" width="24" height="24" rx="2" fill="#FDF8F5"/>
           <rect x="104" y="20" width="16" height="16" rx="1" fill="#5C1F28"/>
-          <!-- Bottom-left finder -->
           <rect x="10" y="94" width="36" height="36" rx="4" fill="#5C1F28"/>
           <rect x="16" y="100" width="24" height="24" rx="2" fill="#FDF8F5"/>
           <rect x="20" y="104" width="16" height="16" rx="1" fill="#5C1F28"/>
-          <!-- Data modules -->
           <rect x="54" y="10" width="6" height="6" rx="1" fill="#C4747A"/>
           <rect x="62" y="10" width="6" height="6" rx="1" fill="#5C1F28"/>
           <rect x="70" y="10" width="6" height="6" rx="1" fill="#C4747A"/>
@@ -282,7 +263,6 @@ None
           <rect x="94" y="54" width="6" height="6" rx="1" fill="#C4747A"/>
           <rect x="110" y="54" width="6" height="6" rx="1" fill="#5C1F28"/>
           <rect x="124" y="54" width="6" height="6" rx="1" fill="#C4747A"/>
-          <!-- Centre -->
           <text x="70" y="76" text-anchor="middle" font-size="18" fill="#C4747A">🌹</text>
           <rect x="10" y="62" width="6" height="6" rx="1" fill="#C4747A"/>
           <rect x="26" y="62" width="6" height="6" rx="1" fill="#5C1F28"/>
@@ -326,7 +306,6 @@ None
 </footer>
 
 <script>
-/* PETALS */
 const petalsCanvas=document.getElementById('petals');
 const petalEmojis=['🌸','🌺','🌹','💮','🏵️','✿','❀'];
 function createPetal(){
@@ -343,31 +322,12 @@ function createPetal(){
 setInterval(createPetal,800);
 for(let i=0;i<8;i++) setTimeout(createPetal,i*400);
 
-/* SCROLL ANIMATIONS */
 const fadeEls=document.querySelectorAll('.fade-in, .tl-item');
 const obs=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});
 },{threshold:0.15});
 fadeEls.forEach(el=>obs.observe(el));
 
-/* LOAD PHOTOS FROM UPLOADED IMAGES */
-// We embed the photos using canvas conversion from the img elements
-// The photos are loaded via the uploaded image data
-const photoSrcs = [
-  // Photo 1 - selfie in white knit top
-  null,
-  // Photo 2 - yellow dress
-  null,
-  // Photo 3 - b&w mirror selfie
-  null
-];
-
-// Since we can't embed base64 directly from uploads in this context,
-// we use CSS background color placeholders with overlay text
-// and load the actual images via object URLs if available
-None
-
-/* YES BUTTON */
 function sayYes(){
   for(let i=0;i<40;i++){
     setTimeout(()=>{
@@ -386,4 +346,4 @@ function sayYes(){
 }
 </script>
 </body>
-            </html>
+</html>
