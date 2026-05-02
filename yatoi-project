@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Yatoi 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Cormorant+Garamond&family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:'Cormorant Garamond',serif;
+  background:#FDF8F5;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* 🎬 INTRO VIDEO */
+#intro{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+#intro video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+#intro.hidden{display:none;}
+
+/* 🔒 LOCK */
+#lock{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#5C1F28;
+  color:white;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+#lock input{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  margin-top:10px;
+}
+
+/* MAIN */
+#main{display:none;}
+
+/* HERO */
+.hero-name{
+  font-family:'Great Vibes',cursive;
+  font-size:80px;
+  color:#5C1F28;
+  margin-top:60px;
+}
+.hero-sub{color:#8B3A42;}
+
+/* CAROUSEL */
+.carousel{
+  width:90%;
+  max-width:400px;
+  margin:20px auto;
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.2);
+}
+.carousel-track{
+  display:flex;
+  transition:transform 0.6s ease;
+}
+.carousel img{width:100%;}
+
+/* BUTTON */
+.btn{
+  background:linear-gradient(135deg,#C9A96E,#E8C98A);
+  padding:16px 40px;
+  border-radius:50px;
+  border:none;
+  font-size:18px;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+/* RESPONSE */
+#response{
+  display:none;
+  padding:60px 20px;
+}
+
+/* HEARTS */
+.heart{
+  position:fixed;
+  font-size:20px;
+  animation:fall 3s linear forwards;
+}
+@keyframes fall{to{transform:translateY(100vh);}}
+
+/* FADE */
+.fade{animation:fadeUp 1s ease;}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎬 INTRO VIDEO -->
+<div id="intro">
+  <video autoplay muted playsinline id="introVideo">
+    <source src="intro.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- 🔒 LOCK -->
+<div id="lock">
+  <h2>Enter our secret 🤍</h2>
+  <input type="password" id="pass" placeholder="hint: her name">
+  <button class="btn" onclick="unlock()">Enter</button>
+</div>
+
+<!-- MAIN -->
+<div id="main" class="fade">
+  <div class="hero-name">Yatoi 🤍</div>
+  <p class="hero-sub">I didn’t know I was talking to my future.</p>
+
+  <div class="carousel">
+    <div class="carousel-track" id="track">
+      <img src="images/yatoi1.jpg">
+      <img src="images/yatoi2.jpg">
+      <img src="images/yatoi3.jpg">
+    </div>
+  </div>
+
+  <p>Not even the camera does you justice… 🤍</p>
+
+  <h2>Will you be my girlfriend? 🌹</h2>
+  <button class="btn" onclick="sayYes()">Yes ❤️</button>
+</div>
+
+<!-- RESPONSE -->
+<div id="response">
+  <h1>She said yes 🥂</h1>
+  <p>Opening something special... 💌</p>
+</div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3">
+</audio>
+
+<script>
+/* 🎬 INTRO FLOW */
+const video = document.getElementById('introVideo');
+video.onended = ()=>{
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('lock').style.display='flex';
+};
+
+/* 🔒 PASSWORD */
+function unlock(){
+  let p=document.getElementById('pass').value.toLowerCase();
+  if(p==="yatoi"){
+    document.getElementById('lock').style.display='none';
+    document.getElementById('main').style.display='block';
+  }else{
+    alert("Try again 🤭");
+  }
+}
+
+/* 🖼️ CAROUSEL */
+let index=0;
+setInterval(()=>{
+  index=(index+1)%3;
+  document.getElementById('track').style.transform=`translateX(-${index*100}%)`;
+},3000);
+
+/* ❤️ YES */
+function sayYes(){
+  document.getElementById('response').style.display='block';
+
+  // play music
+  document.getElementById('bgMusic').play();
+
+  // hearts
+  for(let i=0;i<40;i++){
+    const h=document.createElement('div');
+    h.className='heart';
+    h.innerHTML='❤️';
+    h.style.left=Math.random()*100+'vw';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),3000);
+  }
+
+  // WhatsApp with message
+  setTimeout(()=>{
+    window.location.href="https://wa.me/254705833602?text=I%20said%20yes%20%E2%9D%A4%EF%B8%8F";
+  },2000);
+}
+</script>
+
+</body>
+</html>
